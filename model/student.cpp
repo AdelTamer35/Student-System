@@ -79,7 +79,7 @@ public:
     }
 
     // Setter for GPA
-    void setEmail(double &GPA)
+    void setGPA(double &GPA)
     {
         this->GPA = GPA;
     }
