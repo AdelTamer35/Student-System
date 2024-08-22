@@ -1,14 +1,13 @@
 #include <iostream>
 using namespace std;
-class baseEntity
+// Create a class for shared data between baseEntity and Course
+class ShareData
 {
 private:
-    int ID, age;
-    string name, phoneNumber, email;
+    int ID;
+    string name;
 
 public:
-    baseEntity();
-
     // Getter for ID
     int getID() const
     {
@@ -21,6 +20,25 @@ public:
         ID = id;
     }
 
+    string getName() const
+    {
+        return name;
+    }
+
+    // Setter for name
+    void setName(string n)
+    {
+        name = n;
+    }
+};
+//  Create a class for shared data between Teacher and Student
+class baseEntity : public ShareData
+{
+private:
+    int age;
+    string phoneNumber, email;
+
+public:
     // Getter for age
     int getAge() const
     {
@@ -34,16 +52,6 @@ public:
     }
 
     // Getter for name
-    string getName() const
-    {
-        return name;
-    }
-
-    // Setter for name
-    void setName(string n)
-    {
-        name = n;
-    }
 
     // Getter for phoneNumber
     string getPhoneNumber() const
@@ -68,8 +76,6 @@ public:
     {
         email = e;
     }
-
-    ~baseEntity() {}
 };
 // Create a Teacher Model
 class Teacher : public baseEntity
@@ -96,7 +102,7 @@ public:
     // Setter for studentIDS
     void setStudentIDs(int studentIDs[])
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < sizeof(studentIDs) / sizeof(studentIDs[0]); i++)
         {
             this->studentID[i] = studentIDs[i];
         }
@@ -135,7 +141,7 @@ public:
     // Setter for teachers
     void setTeachers(Teacher teachers[])
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < sizeof(teachers) / sizeof(teachers[0]); i++)
         {
             this->teachers[i] = teachers[i];
         }
@@ -148,4 +154,23 @@ public:
     }
 
     ~Student();
+};
+// Create a Course Model
+class Course : public ShareData
+{
+private:
+    double hour;
+
+public:
+    // Setter for hour
+    void setHour(double h)
+    {
+        hour = h;
+    }
+
+    // Getter for hour
+    double getHour() const
+    {
+        return hour;
+    }
 };
