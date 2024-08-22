@@ -1,5 +1,4 @@
 #include "../model/Model.cpp"
-using namespace std;
 
 // Abstract "Interface" Class For Student
 class StudentRepo

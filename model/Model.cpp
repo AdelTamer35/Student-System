@@ -31,6 +31,7 @@ public:
         name = n;
     }
 };
+
 //  Create a class for shared data between Teacher and Student
 class baseEntity : public ShareData
 {
@@ -77,6 +78,7 @@ public:
         email = e;
     }
 };
+
 // Create a Teacher Model
 class Teacher : public baseEntity
 {
@@ -85,8 +87,6 @@ private:
     int studentID[5]; // one teacher has many students
 
 public:
-    Teacher();
-
     // Getter for salary
     double getSalary() const
     {
@@ -102,7 +102,7 @@ public:
     // Setter for studentIDS
     void setStudentIDs(int studentIDs[])
     {
-        for (int i = 0; i < sizeof(studentIDs) / sizeof(studentIDs[0]); i++)
+        for (int i = 0; i < 5; i++)
         {
             this->studentID[i] = studentIDs[i];
         }
@@ -113,9 +113,8 @@ public:
     {
         return studentID;
     }
-
-    ~Teacher();
 };
+
 // Create a Course Model
 class Course : public ShareData
 {
@@ -139,7 +138,7 @@ public:
     // setter for studentID
     void setStudentIDs(int studentIDs[])
     {
-        for (int i = 0; i < sizeof(studentIDs) / sizeof(studentIDs[0]); i++)
+        for (int i = 0; i < 5; i++)
         {
             this->studentID[i] = studentIDs[i];
         }
@@ -151,6 +150,7 @@ public:
         return studentID;
     }
 };
+
 // Create a Student Model
 class Student : public baseEntity
 {
@@ -159,8 +159,6 @@ private:
     Teacher teachers[5]; // one student has many teachers
     Course courses[5];   // one student has many courses
 public:
-    Student();
-
     // Getter for GPA
     double getGPA() const
     {
@@ -176,7 +174,7 @@ public:
     // Setter for teachers
     void setTeachers(Teacher teachers[])
     {
-        for (int i = 0; i < sizeof(teachers) / sizeof(teachers[0]); i++)
+        for (int i = 0; i < 5; i++)
         {
             this->teachers[i] = teachers[i];
         }
@@ -191,7 +189,7 @@ public:
     // Setter for courses
     void setCourses(Course courses[])
     {
-        for (int i = 0; i < sizeof(courses) / sizeof(courses[0]); i++)
+        for (int i = 0; i < 5; i++)
         {
             this->courses[i] = courses[i];
         }
@@ -202,6 +200,4 @@ public:
     {
         return courses;
     }
-
-    ~Student();
 };
