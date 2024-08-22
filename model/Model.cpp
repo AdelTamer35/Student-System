@@ -116,13 +116,48 @@ public:
 
     ~Teacher();
 };
+// Create a Course Model
+class Course : public ShareData
+{
+private:
+    double hour;
+    int studentID[5]; // // one courses has many Student
+
+public:
+    // Setter for hour
+    void setHour(double h)
+    {
+        hour = h;
+    }
+
+    // Getter for hour
+    double getHour() const
+    {
+        return hour;
+    }
+
+    // setter for studentID
+    void setStudentIDs(int studentIDs[])
+    {
+        for (int i = 0; i < sizeof(studentIDs) / sizeof(studentIDs[0]); i++)
+        {
+            this->studentID[i] = studentIDs[i];
+        }
+    }
+
+    // Getter for studentID
+    int *getStudentIDs()
+    {
+        return studentID;
+    }
+};
 // Create a Student Model
 class Student : public baseEntity
 {
 private:
     double GPA;
     Teacher teachers[5]; // one student has many teachers
-
+    Course courses[5];   // one student has many courses
 public:
     Student();
 
@@ -153,24 +188,20 @@ public:
         return teachers;
     }
 
+    // Setter for courses
+    void setCourses(Course courses[])
+    {
+        for (int i = 0; i < sizeof(courses) / sizeof(courses[0]); i++)
+        {
+            this->courses[i] = courses[i];
+        }
+    }
+
+    // Getter for courses
+    Course *getCourses()
+    {
+        return courses;
+    }
+
     ~Student();
-};
-// Create a Course Model
-class Course : public ShareData
-{
-private:
-    double hour;
-
-public:
-    // Setter for hour
-    void setHour(double h)
-    {
-        hour = h;
-    }
-
-    // Getter for hour
-    double getHour() const
-    {
-        return hour;
-    }
 };
