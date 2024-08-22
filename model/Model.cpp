@@ -8,8 +8,6 @@ private:
 
 public:
     baseEntity();
-    baseEntity(int id, int a, string n, string p, string e)
-        : ID(id), age(a), name(n), phoneNumber(p), email(e) {}
 
     // Getter for ID
     int getID() const
@@ -72,4 +70,50 @@ public:
     }
 
     ~baseEntity() {}
+};
+// Create a Teacher Model
+class Teacher : public baseEntity
+{
+private:
+    double salary;
+
+public:
+    Teacher();
+
+    // Getter for salary
+    double getSalary() const
+    {
+        return salary;
+    }
+
+    // Setter for salary
+    void setSalary(double s)
+    {
+        salary = s;
+    }
+
+    ~Teacher();
+};
+// Create a Student Model
+class Student : public baseEntity
+{
+private:
+    double GPA;
+
+public:
+    Student();
+
+    // Getter for GPA
+    double getGPA() const
+    {
+        return GPA;
+    }
+
+    // Setter for GPA
+    void setGPA(double &GPA)
+    {
+        this->GPA = GPA;
+    }
+
+    ~Student();
 };
