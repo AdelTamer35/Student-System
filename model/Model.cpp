@@ -76,6 +76,7 @@ class Teacher : public baseEntity
 {
 private:
     double salary;
+    int studentID[5]; // one teacher has many students
 
 public:
     Teacher();
@@ -92,6 +93,21 @@ public:
         salary = s;
     }
 
+    // Setter for studentIDS
+    void setStudentIDs(int studentIDs[])
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            this->studentID[i] = studentIDs[i];
+        }
+    }
+
+    // Getter fot studentIDS
+    int *getStudentIDs()
+    {
+        return studentID;
+    }
+
     ~Teacher();
 };
 // Create a Student Model
@@ -99,6 +115,7 @@ class Student : public baseEntity
 {
 private:
     double GPA;
+    Teacher teachers[5]; // one student has many teachers
 
 public:
     Student();
@@ -113,6 +130,21 @@ public:
     void setGPA(double &GPA)
     {
         this->GPA = GPA;
+    }
+
+    // Setter for teachers
+    void setTeachers(Teacher teachers[])
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            this->teachers[i] = teachers[i];
+        }
+    }
+
+    // Getter for teachers
+    Teacher *getTeachers()
+    {
+        return teachers;
     }
 
     ~Student();
