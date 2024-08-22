@@ -70,6 +70,7 @@ int main()
                      << "Age : " << age << endl
                      << "GPA : " << GPA << " }\n";
             }
+
             break;
         }
         case 2:
