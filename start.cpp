@@ -56,6 +56,8 @@ void AddStudent()
              << "Age : " << age << endl
              << "GPA : " << GPA << " }\n";
     }
+    else
+        cout << "Student Not Added\n";
 }
 // Add Course
 void AddCourse()
@@ -80,10 +82,15 @@ void AddCourse()
     CoureController courseController;
     ID = courseController.addCourse(course);
 
-    // Display Course Data
-    cout << "Course Data = { " << "Name :" << name << endl
-         << "ID = " << ID << endl
-         << "Hour = " << hour << " }\n";
+    if (ID != -1)
+    {
+        // Display Course Data
+        cout << "Course Data = { " << "Name :" << name << endl
+             << "ID = " << ID << endl
+             << "Hour = " << hour << " }\n";
+    }
+    else
+        cout << "Course Not Added\n";
 }
 // Add Teacher
 void AddTeacher()
@@ -120,13 +127,18 @@ void AddTeacher()
     TeacherController teacherController;
     ID = teacherController.addTeacher(teacher);
 
-    // Display Teacher Data
-    cout << "Teacher Data = { " << "Name : " << name << endl
-         << "ID : " << ID << endl
-         << "Phone Number : " << phoneNumber << endl
-         << "Email : " << email << endl
-         << "Age : " << age << endl
-         << "Salary : " << salary << " }\n";
+    if (ID != -1)
+    {
+        // Display Teacher Data
+        cout << "Teacher Data = { " << "Name : " << name << endl
+             << "ID : " << ID << endl
+             << "Phone Number : " << phoneNumber << endl
+             << "Email : " << email << endl
+             << "Age : " << age << endl
+             << "Salary : " << salary << " }\n";
+    }
+    else
+        cout << "Teacher Not Added\n";
 }
 int main()
 {

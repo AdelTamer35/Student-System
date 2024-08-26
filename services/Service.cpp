@@ -53,6 +53,7 @@ public:
             012
             015
             */
+
             // Check three digits of Student Phone Number
             if (student.getPhoneNumber().substr(0, 3) != "010" &&
                 student.getPhoneNumber().substr(0, 3) != "011" &&
@@ -120,7 +121,26 @@ public:
     // override
     int addCourse(Course course)
     {
-        return courseRepo.addCourse(course);
+        bool f = true;
+
+        // Check Course Name
+        if (course.getName().length() <= 1)
+        {
+            cout << "Invalid Course Name \n";
+            f = false;
+        }
+
+        // Check Course Hours
+        if (!(course.getHour() >= 1 && course.getHour() <= 4))
+        {
+            cout << "Invalid Course Hours \n";
+            f = false;
+        }
+
+        if (f)
+            return courseRepo.addCourse(course);
+        else
+            return -1;
     }
 };
 
@@ -140,6 +160,83 @@ public:
     // override
     int addTeacher(Teacher teacher)
     {
-        return teacherRepo.addTeacher(teacher);
+        bool f = true;
+
+        // Check Teacher Name
+        if (teacher.getName().length() <= 2)
+        {
+            cout << "Invalid Teacher Name \n";
+            f = false;
+        }
+        else
+        {
+            for (int i = 0; i < teacher.getName().length(); i++)
+            {
+                // check if  teacher.getName()[i] is not char or space
+                if (!(teacher.getName()[i] == ' ' || isalpha(teacher.getName()[i])))
+                {
+                    cout << "Invalid Teacher Name \n";
+                    f = false;
+                    break;
+                }
+            }
+        }
+
+        // Check Teacher Phone Number
+        if (teacher.getPhoneNumber().length() != 11)
+        {
+            cout << "Invalid Teacher Phone Number \n";
+            f = false;
+        }
+        else
+        {
+            // Check three digits of Teacher Phone Number
+            if (teacher.getPhoneNumber().substr(0, 3) != "010" &&
+                teacher.getPhoneNumber().substr(0, 3) != "011" &&
+                teacher.getPhoneNumber().substr(0, 3) != "012" &&
+                teacher.getPhoneNumber().substr(0, 3) != "015")
+            {
+                cout << "Invalid Teacher Phone Number \n";
+                f = false;
+            }
+
+            // Check if Teacher Phone Number is Numeric
+            for (int i = 3; i < teacher.getPhoneNumber().length(); i++)
+            {
+                if (!isdigit(teacher.getPhoneNumber()[i]))
+                {
+                    cout << "Invalid Teacher Phone Number \n";
+                    f = false;
+                    break;
+                }
+            }
+        }
+
+        // Check Teacher Email
+        const std::regex pattern(R"((\w+)(\.{1}\w+)*@(\w+)(\.\w+)+)");
+        if (std::regex_match(teacher.getEmail(), pattern) != 1)
+        {
+            cout << "Invalid Teacher Email \n";
+            f = false;
+        }
+
+        // Check Teacher Age
+        if (!(teacher.getAge() >= 30 && teacher.getAge() <= 75))
+        {
+            cout << "Invalid Teacher Age \n";
+            f = false;
+        }
+
+        // Check Teacher Salary
+        if (!(teacher.getSalary() >= 10000 && teacher.getSalary() <= 50000))
+        {
+            cout << "Invalid Teacher Salary \n";
+            f = false;
+        }
+
+        if (f)
+            return teacherRepo.addTeacher(teacher);
+        else
+            return -1;
     }
 };
