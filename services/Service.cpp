@@ -14,6 +14,7 @@ private:
 
 public:
     // override
+    // Add Student Validation
     int addStudent(Student student)
     {
         bool f = true;
@@ -119,6 +120,7 @@ private:
 
 public:
     // override
+    // Add Course Validation
     int addCourse(Course course)
     {
         bool f = true;
@@ -158,6 +160,7 @@ private:
 
 public:
     // override
+    // Add Teacher Validation
     int addTeacher(Teacher teacher)
     {
         bool f = true;

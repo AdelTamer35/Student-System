@@ -65,13 +65,15 @@ void AddCourse()
     Course course;
     double hour;
     int ID;
-    string name;
+    string name, s;
 
     // Get Course Data from User
     cout << "Please Enter Course Data ! \n";
 
+    getline(cin, s);
+
     cout << "Enter Course Name : ";
-    cin >> name;
+    getline(cin, name);
     course.setName(name);
 
     cout << "Enter Hour :";
@@ -96,28 +98,30 @@ void AddCourse()
 void AddTeacher()
 {
     Teacher teacher;
-    string name, phoneNumber, email;
+    string name, phoneNumber, email, s;
     int ID, age;
     double salary;
 
     // Get Teacher Data from User
     cout << "Please Enter Teacher Data ! \n";
 
+    getline(cin, s);
+
     cout << "Enter Teacher Name : ";
-    cin >> name;
+    getline(cin, name);
     teacher.setName(name);
 
     cout << "Enter Phone Number : ";
-    cin >> phoneNumber;
+    getline(cin, phoneNumber);
     teacher.setPhoneNumber(phoneNumber);
+
+    cout << "Enter Email :";
+    getline(cin, email);
+    teacher.setEmail(email);
 
     cout << "Enter Age :";
     cin >> age;
     teacher.setAge(age);
-
-    cout << "Enter Email :";
-    cin >> email;
-    teacher.setEmail(email);
 
     cout << "Enter Salary :";
     cin >> salary;
@@ -139,6 +143,152 @@ void AddTeacher()
     }
     else
         cout << "Teacher Not Added\n";
+}
+
+// Student Services
+void SwitchStudent(int service)
+{
+    switch (service)
+    {
+    // Add Student
+    case 1:
+    {
+        while (true)
+        {
+            cout << "Add Student \n";
+            AddStudent();
+            cout << "Do you want to add another student? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+        break;
+    }
+    // Update Student
+    case 2:
+    {
+        cout << "Update Student \n";
+        break;
+    }
+    // Delete Student
+    case 3:
+    {
+        cout << "Delete Student \n";
+        break;
+    }
+    // Display Student
+    case 4:
+    {
+        cout << "Display Student \n";
+        break;
+    }
+    case 5:
+    {
+        cout << "Exit \n";
+        break;
+    }
+    default:
+        cout << "Invalid Process \n";
+        break;
+    }
+}
+// Course Services
+void SwitchCourse(int service)
+{
+    switch (service)
+    {
+    // Add Course
+    case 1:
+    {
+        while (true)
+        {
+            cout << "Add Course \n";
+            AddCourse();
+            cout << "Do you want to add another course? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+        break;
+    }
+    // Update Course
+    case 2:
+    {
+        cout << "Update Course \n";
+        break;
+    }
+    // Delete Course
+    case 3:
+    {
+        cout << "Delete Course \n";
+        break;
+    }
+    // Display Course
+    case 4:
+    {
+        cout << "Display Course \n";
+        break;
+    }
+    case 5:
+    {
+        cout << "Exit \n";
+        break;
+    }
+    default:
+        cout << "Invalid Process \n";
+        break;
+    }
+}
+// Teacher Services
+void SwitchTeacher(int service)
+{
+    switch (service)
+    {
+    // Add Teacher
+    case 1:
+    {
+        while (true)
+        {
+            cout << "Add Teacher \n";
+            AddTeacher();
+            cout << "Do you want to add another teacher? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
+        break;
+    }
+    // Update Teacher
+    case 2:
+    {
+        cout << "Update Teacher \n";
+        break;
+    }
+    // Delete Teacher
+    case 3:
+    {
+        cout << "Delete Teacher \n";
+        break;
+    }
+    // Display Teacher
+    case 4:
+    {
+        cout << "Display Teacher \n";
+        break;
+    }
+    case 5:
+    {
+        cout << "Exit \n";
+        break;
+    }
+    default:
+        cout << "Invalid Process \n";
+        break;
+    }
 }
 int main()
 {
@@ -163,51 +313,7 @@ int main()
 
             cout << "which Service You Want To Need ! \n";
             cin >> service;
-
-            switch (service)
-            {
-            // Add Student
-            case 1:
-            {
-                while (true)
-                {
-                    cout << "Add Student \n";
-                    AddStudent();
-                    cout << "Do you want to add another student? (y/n) ";
-                    char choice;
-                    cin >> choice;
-                    if (choice == 'n' || choice == 'N')
-                        break;
-                }
-                break;
-            }
-            // Update Student
-            case 2:
-            {
-                cout << "Update Student \n";
-                break;
-            }
-            // Delete Student
-            case 3:
-            {
-                cout << "Delete Student \n";
-                break;
-            }
-            // Display Student
-            case 4:
-            {
-                cout << "Display Student \n";
-                break;
-            }
-            case 5:
-            {
-                cout << "Exit \n";
-                break;
-            }
-            default:
-                cout << "Invalid Process \n";
-                break;
-            }
+            SwitchStudent(service);
 
             break;
         }
@@ -216,53 +322,11 @@ int main()
         case 2:
         {
             showService("Course");
+
             cout << "which Service You Want To Need ! \n";
             cin >> service;
+            SwitchCourse(service);
 
-            switch (service)
-            {
-            // Add Course
-            case 1:
-            {
-                while (true)
-                {
-                    cout << "Add Course \n";
-                    AddCourse();
-                    cout << "Do you want to add another course? (y/n) ";
-                    char choice;
-                    cin >> choice;
-                    if (choice == 'n' || choice == 'N')
-                        break;
-                }
-                break;
-            }
-            // Update Course
-            case 2:
-            {
-                cout << "Update Course \n";
-                break;
-            }
-            // Delete Course
-            case 3:
-            {
-                cout << "Delete Course \n";
-                break;
-            }
-            // Display Course
-            case 4:
-            {
-                cout << "Display Course \n";
-                break;
-            }
-            case 5:
-            {
-                cout << "Exit \n";
-                break;
-            }
-            default:
-                cout << "Invalid Process \n";
-                break;
-            }
             break;
         }
         // **************** Teacher Services ****************
@@ -271,60 +335,20 @@ int main()
             showService("Teacher");
             cout << "which Service You Want To Need ! \n";
             cin >> service;
+            SwitchTeacher(service);
 
-            switch (service)
-            {
-            // Add Teacher
-            case 1:
-            {
-                while (true)
-                {
-                    cout << "Add Teacher \n";
-                    AddTeacher();
-                    cout << "Do you want to add another teacher? (y/n) ";
-                    char choice;
-                    cin >> choice;
-                    if (choice == 'n' || choice == 'N')
-                        break;
-                }
-
-                break;
-            }
-            // Update Teacher
-            case 2:
-            {
-                cout << "Update Teacher \n";
-                break;
-            }
-            // Delete Teacher
-            case 3:
-            {
-                cout << "Delete Teacher \n";
-                break;
-            }
-            // Display Teacher
-            case 4:
-            {
-                cout << "Display Teacher \n";
-                break;
-            }
-            case 5:
-            {
-                cout << "Exit \n";
-                break;
-            }
-            default:
-                cout << "Invalid Process \n";
-                break;
-            }
             break;
         }
         case 4:
+        {
             cout << "Exit \n";
             break;
+        }
         default:
+        {
             cout << "Invalid Process \n";
             break;
+        }
         }
     }
 
