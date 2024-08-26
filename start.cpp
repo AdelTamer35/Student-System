@@ -13,23 +13,25 @@ void showService(string service)
 void AddStudent()
 {
     Student student;
-    string name, phoneNumber, email;
+    string name, phoneNumber, email, s;
     int age, ID;
     double GPA;
 
     // Get Student Data from User
     cout << "Please Enter Student Data ! \n";
 
+    getline(cin, s);
+
     cout << "Enter Student Name : ";
-    cin >> name;
+    getline(cin, name);
     student.setName(name);
 
     cout << "Enter Phone Number : ";
-    cin >> phoneNumber;
+    getline(cin, phoneNumber);
     student.setPhoneNumber(phoneNumber);
 
     cout << "Enter Email :";
-    cin >> email;
+    getline(cin, email);
     student.setEmail(email);
 
     cout << "Enter Age :";
@@ -44,13 +46,16 @@ void AddStudent()
     StudentController studentController;
     ID = studentController.addStudent(student);
 
-    // Display Student Data
-    cout << "Student Data = { " << "Name : " << name << endl
-         << "ID : " << ID << endl
-         << "Phone Number : " << phoneNumber << endl
-         << "Email : " << email << endl
-         << "Age : " << age << endl
-         << "GPA : " << GPA << " }\n";
+    if (ID != -1)
+    {
+        // Display Student Data
+        cout << "Student Data = { " << "Name : " << name << endl
+             << "ID : " << ID << endl
+             << "Phone Number : " << phoneNumber << endl
+             << "Email : " << email << endl
+             << "Age : " << age << endl
+             << "GPA : " << GPA << " }\n";
+    }
 }
 // Add Course
 void AddCourse()
@@ -197,6 +202,7 @@ int main()
 
         // **************** Course Services ****************
         case 2:
+        {
             showService("Course");
             cout << "which Service You Want To Need ! \n";
             cin >> service;
@@ -246,9 +252,10 @@ int main()
                 break;
             }
             break;
-
+        }
         // **************** Teacher Services ****************
         case 3:
+        {
             showService("Teacher");
             cout << "which Service You Want To Need ! \n";
             cin >> service;
@@ -299,6 +306,7 @@ int main()
                 break;
             }
             break;
+        }
         case 4:
             cout << "Exit \n";
             break;
