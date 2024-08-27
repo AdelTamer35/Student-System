@@ -5,6 +5,7 @@ class StudentService
 {
 public:
     virtual int addStudent(Student student) = 0;
+    virtual Student dispalyStudenByID(int ID) = 0;
 };
 // Concrete "Implementation" Class for Student Service
 class StudentServiceImp : public StudentService
@@ -103,6 +104,11 @@ public:
             return studentRepo.addStudent(student);
         else
             return -1;
+    }
+
+    Student dispalyStudenByID(int ID)
+    {
+        return studentRepo.dispalyStudenByID(ID);
     }
 };
 

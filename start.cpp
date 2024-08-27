@@ -145,6 +145,35 @@ void AddTeacher()
         cout << "Teacher Not Added\n";
 }
 
+// Dispaly Student
+void DisplayStudentByID()
+{
+    int id;
+    cout << "Enter The Student ID You Want To Diplay His Data : ";
+
+    // Get Student ID From User
+    cin >> id;
+
+    // Search About Student ID
+    StudentController studentController;
+    Student student;
+    student = studentController.dispalyStudenByID(id);
+
+    if (student.getID() != -1)
+    {
+        // Display Student Data
+        cout << "Student Is Found" << endl;
+        cout << "Student Data = { " << "Name : " << student.getName() << endl
+             << "ID : " << student.getID() << endl
+             << "Phone Number : " << student.getPhoneNumber() << endl
+             << "Email : " << student.getEmail() << endl
+             << "Age : " << student.getAge() << endl
+             << "GPA : " << student.getGPA() << " }\n";
+    }
+    else
+        cout << "Student Not Found" << endl;
+}
+
 // Student Services
 void SwitchStudent(int service)
 {
@@ -180,7 +209,17 @@ void SwitchStudent(int service)
     // Display Student
     case 4:
     {
-        cout << "Display Student \n";
+        while (true)
+        {
+            cout << "Display Student \n";
+            DisplayStudentByID();
+            cout << "Do you want to Dispaly another student? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
         break;
     }
     case 5:

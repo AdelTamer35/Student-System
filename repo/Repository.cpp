@@ -28,6 +28,7 @@ class StudentRepo
 {
 public:
     virtual int addStudent(Student student) = 0;
+    virtual Student dispalyStudenByID(int ID) = 0;
 };
 // Concrete "Implementation" Class for Student Repository
 class StudentRepoImpl : public StudentRepo
@@ -40,16 +41,40 @@ public:
     int addStudent(Student student)
     {
         if (data.indexStudent == 25)
-        {
             cout << "Cannot add more students. Repository is full." << endl;
-        }
         else
         {
             student.setID(data.IDStudent++);
             data.student[data.indexStudent++] = student;
             return student.getID();
         }
-        
+        return -1;
+    }
+
+    Student dispalyStudenByID(int ID){
+        Student noStudent;
+        noStudent.setID(-1);
+        if(data.indexStudent == 0)
+            cout << "There is no student here. Repository is empty." << endl;
+        else
+        {
+            // Search about student ID USing Binary Search
+            int l = 0, r = data.indexStudent - 1;
+            while(l <= r){
+                int mid = (l + r) / 2;
+                if (data.student[mid].getID() == ID)
+                {
+                    // ID is Found
+                    return data.student[mid];
+                }
+                else if (data.student[mid].getID() < ID)
+                    l = mid + 1;
+                else
+                    r = mid - 1;
+            }
+        }
+        // there is no ID like this or Repository is empty
+        return noStudent;
     }
 };
 
@@ -70,15 +95,14 @@ public:
     int addCourse(Course course)
     {
         if (data.indexCourse == 25)
-        {
             cout << "Cannot add more courses. Repository is full." << endl;
-        }
         else
         {
             course.setID(data.IDCourse++);
             data.course[data.indexCourse++] = course;
             return course.getID();
         }
+        return -1;
     }
 };
 
@@ -99,14 +123,13 @@ public:
     int addTeacher(Teacher teacher)
     {
         if (data.indexTeacher == 25)
-        {
             cout << "Cannot add more teachers. Repository is full." << endl;
-        }
         else
         {
             teacher.setID(data.IDTeacher++);
             data.teacher[data.indexTeacher++] = teacher;
             return teacher.getID();
         }
+        return -1;
     }
 };

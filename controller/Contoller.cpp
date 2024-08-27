@@ -10,6 +10,11 @@ public:
     {
         return studentService.addStudent(student);
     }
+
+    Student dispalyStudenByID(int ID)
+    {
+        return studentService.dispalyStudenByID(ID);
+    }
 };
 
 // Class Course Controller
