@@ -9,6 +9,7 @@ void showService(string service)
          << "4. Display " << service << endl;
     cout << "5. Exit \n";
 }
+
 // Add Student
 void AddStudent()
 {
@@ -145,7 +146,7 @@ void AddTeacher()
         cout << "Teacher Not Added\n";
 }
 
-// Dispaly Student
+// Dispaly Student By ID
 void DisplayStudentByID()
 {
     int id;
@@ -157,7 +158,7 @@ void DisplayStudentByID()
     // Search About Student ID
     StudentController studentController;
     Student student;
-    student = studentController.dispalyStudenByID(id);
+    student = studentController.displayStudenByID(id);
 
     if (student.getID() != -1)
     {
@@ -172,6 +173,58 @@ void DisplayStudentByID()
     }
     else
         cout << "Student Not Found" << endl;
+}
+// Display Course By ID
+void DisplayCourseByID()
+{
+    int id;
+    cout << "Enter The Course ID You Want To Diplay His Data : ";
+
+    // Get Course ID From User
+    cin >> id;
+
+    // Search About Course ID
+    CoureController courseController;
+    Course course;
+    course = courseController.displayCourseByID(id);
+
+    if (course.getID() != -1)
+    {
+        // Display Course Data
+        cout << "Course Is Found" << endl;
+        cout << "Course Data = { " << "Name : " << course.getName() << endl
+             << "ID : " << course.getID() << endl
+             << "Hour : " << course.getHour() << " }\n";
+    }
+    else
+        cout << "Course Not Found" << endl;
+}
+// Display Teacher By ID
+void DisplayTeacherByID()
+{
+    int id;
+    cout << "Enter The Teacher ID You Want To Diplay His Data : ";
+
+    // Get Teacher ID From User
+    cin >> id;
+
+    // Search About Teacher ID
+    TeacherController teacherController;
+    Teacher teacher;
+    teacher = teacherController.displayTeacherByID(id);
+
+    if (teacher.getID() != -1)
+    {
+        // Display Teacher Data
+        cout << "Teacher Data = { " << "Name : " << teacher.getName() << endl
+             << "ID : " << teacher.getID() << endl
+             << "Phone Number : " << teacher.getPhoneNumber() << endl
+             << "Email : " << teacher.getEmail() << endl
+             << "Age : " << teacher.getAge() << endl
+             << "Salary : " << teacher.getSalary() << " }\n";
+    }
+    else
+        cout << "Teacher Not Found" << endl;
 }
 
 // Student Services
@@ -211,7 +264,7 @@ void SwitchStudent(int service)
     {
         while (true)
         {
-            cout << "Display Student \n";
+            cout << "Display Student By ID\n";
             DisplayStudentByID();
             cout << "Do you want to Dispaly another student? (y/n) ";
             char choice;
@@ -267,7 +320,17 @@ void SwitchCourse(int service)
     // Display Course
     case 4:
     {
-        cout << "Display Course \n";
+        while (true)
+        {
+            cout << "Display Course By ID\n";
+            DisplayCourseByID();
+            cout << "Do you want to Dispaly another course? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
         break;
     }
     case 5:
@@ -316,7 +379,17 @@ void SwitchTeacher(int service)
     // Display Teacher
     case 4:
     {
-        cout << "Display Teacher \n";
+        while (true)
+        {
+            cout << "Display Teacher By ID\n";
+            DisplayTeacherByID();
+            cout << "Do you want to Dispaly another teacher? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
         break;
     }
     case 5:

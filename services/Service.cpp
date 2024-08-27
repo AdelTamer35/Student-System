@@ -5,7 +5,7 @@ class StudentService
 {
 public:
     virtual int addStudent(Student student) = 0;
-    virtual Student dispalyStudenByID(int ID) = 0;
+    virtual Student displayStudenByID(int ID) = 0;
 };
 // Concrete "Implementation" Class for Student Service
 class StudentServiceImp : public StudentService
@@ -106,9 +106,9 @@ public:
             return -1;
     }
 
-    Student dispalyStudenByID(int ID)
+    Student displayStudenByID(int ID)
     {
-        return studentRepo.dispalyStudenByID(ID);
+        return studentRepo.displayStudenByID(ID);
     }
 };
 
@@ -117,6 +117,7 @@ class CourseService
 {
 public:
     virtual int addCourse(Course course) = 0;
+    virtual Course displayCourseByID(int ID) = 0;
 };
 // Concrete "Implementation" Class for Course Service
 class CourseServiceImp : public CourseService
@@ -150,6 +151,11 @@ public:
         else
             return -1;
     }
+
+    Course displayCourseByID(int ID)
+    {
+        return courseRepo.displayCourseByID(ID);
+    }
 };
 
 // Abstract "Interface" Class For Teacher
@@ -157,6 +163,7 @@ class TeacherService
 {
 public:
     virtual int addTeacher(Teacher teacher) = 0;
+    virtual Teacher displayTeacherByID(int ID) = 0;
 };
 // Concrete "Implementation" Class for Teacher Service
 class TeacherServiceImp : public TeacherService
@@ -247,5 +254,10 @@ public:
             return teacherRepo.addTeacher(teacher);
         else
             return -1;
+    }
+
+    Teacher displayTeacherByID(int ID)
+    {
+        return teacherRepo.displayTeacherByID(ID);
     }
 };

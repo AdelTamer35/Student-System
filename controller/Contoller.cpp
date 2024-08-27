@@ -11,10 +11,12 @@ public:
         return studentService.addStudent(student);
     }
 
-    Student dispalyStudenByID(int ID)
+    Student displayStudenByID(int ID)
     {
-        return studentService.dispalyStudenByID(ID);
+        return studentService.displayStudenByID(ID);
     }
+
+
 };
 
 // Class Course Controller
@@ -28,6 +30,11 @@ public:
     {
         return courseService.addCourse(course);
     }
+
+    Course displayCourseByID(int ID)
+    {
+        return courseService.displayCourseByID(ID);
+    }
 };
 
 // Class Teacher Controller
@@ -40,5 +47,10 @@ public:
     int addTeacher(Teacher teacher)
     {
         return teacherService.addTeacher(teacher);
+    }
+    
+    Teacher displayTeacherByID(int ID)
+    {
+        return teacherService.displayTeacherByID(ID);
     }
 };
