@@ -71,4 +71,14 @@ public:
     {
         return teacherService.displayTeacherByID(ID);
     }
+
+    bool validateTeacherData(Teacher teacher)
+    {
+        return teacherService.validateTeacherData(teacher);
+    }
+
+    Teacher updateTeacher(Teacher teacher)
+    {
+        return teacherService.updateTeacher(teacher);
+    }
 };

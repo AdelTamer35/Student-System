@@ -183,6 +183,7 @@ class TeacherRepo
 public:
     virtual int addTeacher(Teacher teacher) = 0;
     virtual Teacher displayTeacherByID(int ID) = 0;
+    virtual Teacher updateTeacher(Teacher teacher) = 0;
 };
 // Concrete "Implementation" Class for Teacher Repository
 class TeacherRepoImpl : public TeacherRepo
@@ -231,5 +232,24 @@ public:
         }
         // there is no ID like this or Repository is empty
         return noTeacher;
+    }
+
+    Teacher updateTeacher(Teacher teacher)
+    {
+        // Search about teacher ID USing Binary Search and update data
+        int l = 0, r = data.indexTeacher - 1;
+        while (l <= r)
+        {
+            int mid = (l + r) / 2;
+            if (data.teacher[mid].getID() == teacher.getID())
+            {
+                // ID is Found
+                return data.teacher[mid] = teacher;
+            }
+            else if (data.teacher[mid].getID() < teacher.getID())
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
     }
 };

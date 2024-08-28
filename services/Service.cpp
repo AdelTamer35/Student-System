@@ -188,6 +188,8 @@ class TeacherService
 public:
     virtual int addTeacher(Teacher teacher) = 0;
     virtual Teacher displayTeacherByID(int ID) = 0;
+    virtual bool validateTeacherData(Teacher teacher) = 0;
+    virtual Teacher updateTeacher(Teacher teacher) = 0;
 };
 // Concrete "Implementation" Class for Teacher Service
 class TeacherServiceImp : public TeacherService
@@ -199,6 +201,14 @@ public:
     // override
     // Add Teacher Validation
     int addTeacher(Teacher teacher)
+    {
+        if (TeacherServiceImp::validateTeacherData(teacher))
+            return teacherRepo.addTeacher(teacher);
+        else
+            return -1;
+    }
+
+    bool validateTeacherData(Teacher teacher)
     {
         bool f = true;
 
@@ -273,15 +283,16 @@ public:
             cout << "Invalid Teacher Salary \n";
             f = false;
         }
-
-        if (f)
-            return teacherRepo.addTeacher(teacher);
-        else
-            return -1;
+        return f;
     }
 
     Teacher displayTeacherByID(int ID)
     {
         return teacherRepo.displayTeacherByID(ID);
+    }
+
+    Teacher updateTeacher(Teacher teacher)
+    {
+        return teacherRepo.updateTeacher(teacher);
     }
 };
