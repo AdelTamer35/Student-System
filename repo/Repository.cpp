@@ -29,6 +29,7 @@ class StudentRepo
 public:
     virtual int addStudent(Student student) = 0;
     virtual Student displayStudenByID(int ID) = 0;
+    virtual Student updateStudent(Student student) = 0;
 };
 // Concrete "Implementation" Class for Student Repository
 class StudentRepoImpl : public StudentRepo
@@ -76,6 +77,25 @@ public:
         }
         // there is no ID like this or Repository is empty
         return noStudent;
+    }
+
+    Student updateStudent(Student student)
+    {
+        // Search about student ID USing Binary Search and update data
+        int l = 0, r = data.indexStudent - 1;
+        while (l <= r)
+        {
+            int mid = (l + r) / 2;
+            if (data.student[mid].getID() == student.getID())
+            {
+                // ID is Found
+                return data.student[mid] = student;
+            }
+            else if (data.student[mid].getID() < student.getID())
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
     }
 };
 

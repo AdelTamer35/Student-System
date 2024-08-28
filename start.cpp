@@ -227,6 +227,122 @@ void DisplayTeacherByID()
         cout << "Teacher Not Found" << endl;
 }
 
+// Update Student Data
+Student updateStudentData(int choice, Student &student)
+{
+    string data;
+    switch (choice)
+    {
+    // Update Student Name
+    case 1:
+    {
+        cout << "Enter New Name : ";
+        cin.ignore();
+        getline(cin, data);
+        student.setName(data);
+        break;
+    }
+    // Update Student Phone Number
+    case 2:
+    {
+        cout << "Enter New Phone Number : ";
+        cin.ignore();
+        getline(cin, data);
+        student.setPhoneNumber(data);
+        break;
+    }
+    // Update Student Email
+    case 3:
+    {
+        cout << "Enter New Email : ";
+        cin.ignore();
+        getline(cin, data);
+        student.setEmail(data);
+        break;
+    }
+    // Update Student Age
+    case 4:
+    {
+        cout << "Enter New Age : ";
+        cin >> data;
+        student.setAge(stoi(data));
+        break;
+    }
+    // Update Student GPA
+    case 5:
+    {
+        double GPA;
+        cout << "Enter New GPA : ";
+        cin >> GPA;
+        student.setGPA(GPA);
+        break;
+    }
+    }
+    return student;
+}
+// Update Student By ID
+void UpdateStudentByID()
+{
+    int id;
+    cout << "Enter The Student ID You Want To Update His Data : ";
+
+    // Get Student ID From User
+    cin >> id;
+
+    // Search About Student ID
+    StudentController studentController;
+    Student student;
+    student = studentController.displayStudenByID(id);
+
+    if (student.getID() != -1)
+    {
+        // Select Which Student Data You Want To Update
+        cout << "Select Which Student Data You Want To Update : \n";
+        cout << "1. Name \t 2. Phone Number \n"
+             << "3. Email \t 4. Age \n"
+             << "5. GPA \t\t 6. Exit \n";
+
+        int choice;
+        cin >> choice;
+
+        if (choice == 6)
+        {
+            cout << "Exiting Update Student Menu \n";
+            cout << "Student Not Updated\n";
+            return;
+        }
+        else if (choice > 6 || choice < 1)
+        {
+            cout << "Invalid Choice \n";
+            cout << "Student Not Updated\n";
+            return;
+        }
+
+        // Update Student Data
+        student = updateStudentData(choice, student);
+
+        // Validate Student Data
+        if (studentController.validateStudentData(student))
+        {
+            // Update Student Data in Database
+            student = studentController.updateStudent(student);
+
+            // Display Updated Student Data
+            cout << "Student Data Updated Successfully \n";
+            cout << "Updated Student Data = { " << "Name : " << student.getName() << endl
+                 << "ID : " << student.getID() << endl
+                 << "Phone Number : " << student.getPhoneNumber() << endl
+                 << "Email : " << student.getEmail() << endl
+                 << "Age : " << student.getAge() << endl
+                 << "GPA : " << student.getGPA() << " }\n";
+        }
+        else
+            cout << "Student Not Updated\n";
+    }
+    else
+        cout << "Student Not Found \n";
+}
+
 // Student Services
 void SwitchStudent(int service)
 {
@@ -250,7 +366,17 @@ void SwitchStudent(int service)
     // Update Student
     case 2:
     {
-        cout << "Update Student \n";
+        while (true)
+        {
+            cout << "Update Student \n";
+            UpdateStudentByID();
+            cout << "Do you want to Update another student? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
         break;
     }
     // Delete Student
@@ -264,7 +390,7 @@ void SwitchStudent(int service)
     {
         while (true)
         {
-            cout << "Display Student By ID\n";
+            cout << "Display Student\n";
             DisplayStudentByID();
             cout << "Do you want to Dispaly another student? (y/n) ";
             char choice;

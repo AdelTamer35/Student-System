@@ -16,7 +16,14 @@ public:
         return studentService.displayStudenByID(ID);
     }
 
+    bool validateStudentData(Student student){
+        return studentService.validateStudentData(student);
+    }
 
+    Student updateStudent(Student student)
+    {
+        return studentService.updateStudent(student);
+    }
 };
 
 // Class Course Controller
