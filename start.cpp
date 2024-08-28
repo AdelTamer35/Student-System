@@ -343,6 +343,88 @@ void UpdateStudentByID()
         cout << "Student Not Found \n";
 }
 
+Course updateCourseData(int choice, Course course)
+{
+    string data;
+    switch (choice)
+    {
+    // Update Course Name
+    case 1:
+    {
+        cout << "Enter New Name : ";
+        cin.ignore();
+        getline(cin, data);
+        course.setName(data);
+        break;
+    }
+    // Update Course Hour
+    case 2:
+    {
+        cout << "Enter New Hour : ";
+        cin >> data;
+        course.setHour(stoi(data));
+        break;
+    }
+    }
+    return course;
+}
+// Update Course By ID
+void UpdateCourseByID()
+{
+    int id;
+    cout << "Enter The Course ID You Want To Update His Data : ";
+
+    // Get Course ID From User
+    cin >> id;
+
+    // Search About Course ID
+    CoureController courseController;
+    Course course;
+    course = courseController.displayCourseByID(id);
+
+    if (course.getID() != -1)
+    {
+        // Select Which Course Data You Want To Update
+        cout << "Select Which Course Data You Want To Update : \n";
+        cout << "1. Name \t 2. Hour \n 3.Exit \n";
+
+        int choice;
+        cin >> choice;
+
+        if (choice == 3)
+        {
+            cout << "Exiting Update Course Menu \n";
+            cout << "Course Not Updated\n";
+            return;
+        }
+        else if (choice > 3 || choice < 1)
+        {
+            cout << "Invalid Choice \n";
+            cout << "Course Not Updated\n";
+            return;
+        }
+
+        // Update Course Data
+        course = updateCourseData(choice, course);
+
+        // Validate Course Data
+        if (courseController.validateCourseData(course))
+        {
+            // Update Course Data in Database
+            course = courseController.updateCourse(course);
+            // Display Updated Course Data
+            cout << "Course Data Updated Successfully \n";
+            cout << "Updated Course Data = { " << "Name : " << course.getName() << endl
+                 << "ID : " << course.getID() << endl
+                 << "Hour : " << course.getHour() << " }\n";
+        }
+        else
+            cout << "Course Not Updated\n";
+    }
+    else
+        cout << "Course Not Found \n";
+}
+
 // Student Services
 void SwitchStudent(int service)
 {
@@ -434,7 +516,16 @@ void SwitchCourse(int service)
     // Update Course
     case 2:
     {
-        cout << "Update Course \n";
+        while (true)
+        {
+            cout << "Update Course \n";
+            UpdateCourseByID();
+            cout << "Do you want to Update another course? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
         break;
     }
     // Delete Course

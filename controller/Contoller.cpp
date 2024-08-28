@@ -16,7 +16,8 @@ public:
         return studentService.displayStudenByID(ID);
     }
 
-    bool validateStudentData(Student student){
+    bool validateStudentData(Student student)
+    {
         return studentService.validateStudentData(student);
     }
 
@@ -42,6 +43,16 @@ public:
     {
         return courseService.displayCourseByID(ID);
     }
+
+    bool validateCourseData(Course course)
+    {
+        return courseService.validateCourseData(course);
+    }
+
+    Course updateCourse(Course course)
+    {
+        return courseService.updateCourse(course);
+    }
 };
 
 // Class Teacher Controller
@@ -55,7 +66,7 @@ public:
     {
         return teacherService.addTeacher(teacher);
     }
-    
+
     Teacher displayTeacherByID(int ID)
     {
         return teacherService.displayTeacherByID(ID);

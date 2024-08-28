@@ -1,6 +1,6 @@
 #include "../model/Model.cpp"
-// Static Data 
-class Data 
+// Static Data
+class Data
 {
 public:
     static Student student[25];
@@ -56,13 +56,14 @@ public:
     {
         Student noStudent;
         noStudent.setID(-1);
-        if(data.indexStudent == 0)
+        if (data.indexStudent == 0)
             cout << "There is no student here. Repository is empty." << endl;
         else
         {
             // Search about student ID USing Binary Search
             int l = 0, r = data.indexStudent - 1;
-            while(l <= r){
+            while (l <= r)
+            {
                 int mid = (l + r) / 2;
                 if (data.student[mid].getID() == ID)
                 {
@@ -105,6 +106,7 @@ class CourseRepo
 public:
     virtual int addCourse(Course course) = 0;
     virtual Course displayCourseByID(int ID) = 0;
+    virtual Course updateCourse(Course course) = 0;
 };
 // Concrete "Implementation" Class for Course Repository
 class CourseRepoImpl : public CourseRepo
@@ -131,13 +133,14 @@ public:
     {
         Course noCourse;
         noCourse.setID(-1);
-        if(data.indexCourse == 0)
+        if (data.indexCourse == 0)
             cout << "There is no course here. Repository is empty." << endl;
         else
         {
             // Search about course ID USing Binary Search
             int l = 0, r = data.indexCourse - 1;
-            while(l <= r){
+            while (l <= r)
+            {
                 int mid = (l + r) / 2;
                 if (data.course[mid].getID() == ID)
                 {
@@ -152,6 +155,25 @@ public:
         }
         // there is no ID like this or Repository is empty
         return noCourse;
+    }
+
+    Course updateCourse(Course course)
+    {
+        // Search about course ID USing Binary Search and update data
+        int l = 0, r = data.indexCourse - 1;
+        while (l <= r)
+        {
+            int mid = (l + r) / 2;
+            if (data.course[mid].getID() == course.getID())
+            {
+                // ID is Found
+                return data.course[mid] = course;
+            }
+            else if (data.course[mid].getID() < course.getID())
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
     }
 };
 
@@ -187,13 +209,14 @@ public:
     {
         Teacher noTeacher;
         noTeacher.setID(-1);
-        if(data.indexTeacher == 0)
+        if (data.indexTeacher == 0)
             cout << "There is no teacher here. Repository is empty." << endl;
         else
         {
             // Search about teacher ID USing Binary Search
             int l = 0, r = data.indexTeacher - 1;
-            while(l <= r){
+            while (l <= r)
+            {
                 int mid = (l + r) / 2;
                 if (data.teacher[mid].getID() == ID)
                 {
