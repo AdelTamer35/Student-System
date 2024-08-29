@@ -249,12 +249,14 @@ public:
     virtual Teacher displayTeacherByID(int ID) = 0;
     virtual bool validateTeacherData(Teacher teacher) = 0;
     virtual Teacher updateTeacher(Teacher teacher) = 0;
+    virtual Teacher *deleteTeacher(int ID) = 0;
 };
 // Concrete "Implementation" Class for Teacher Service
 class TeacherServiceImp : public TeacherService
 {
 private:
     TeacherRepoImpl teacherRepo;
+    Data data;
 
 public:
     // override
@@ -353,5 +355,32 @@ public:
     Teacher updateTeacher(Teacher teacher)
     {
         return teacherRepo.updateTeacher(teacher);
+    }
+
+    int searchAboutID(int ID)
+    {
+        // Search About ID using Binary Search
+        int left = 0, right = data.indexTeacher - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (data.teacher[mid].getID() == ID)
+                return mid;
+            else if (data.teacher[mid].getID() < ID)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return -1;
+    }
+
+    Teacher *deleteTeacher(int ID)
+    {
+        // Check if There is No Course or Not
+        if (data.indexTeacher == 0)
+            cout << "No Course to Delete \n";
+        else if (TeacherServiceImp::searchAboutID(ID) != -1)
+            return teacherRepo.deleteTeacher(TeacherServiceImp::searchAboutID(ID));
+        return nullptr;
     }
 };

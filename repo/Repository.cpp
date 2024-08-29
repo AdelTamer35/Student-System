@@ -207,6 +207,7 @@ public:
     virtual int addTeacher(Teacher teacher) = 0;
     virtual Teacher displayTeacherByID(int ID) = 0;
     virtual Teacher updateTeacher(Teacher teacher) = 0;
+    virtual Teacher *deleteTeacher(int mid) = 0;
 };
 // Concrete "Implementation" Class for Teacher Repository
 class TeacherRepoImpl : public TeacherRepo
@@ -274,5 +275,15 @@ public:
             else
                 r = mid - 1;
         }
+    }
+
+    Teacher *deleteTeacher(int mid)
+    {
+        // Shift to the left
+        for (int i = mid; i < data.indexTeacher - 1; i++)
+            data.teacher[i] = data.teacher[i + 1];
+        data.indexTeacher--;
+
+        return data.teacher;
     }
 };

@@ -488,6 +488,23 @@ void DeleteCourseByID()
     else
         cout << "Course with ID [" << id << "] not found\n";
 }
+// Delete Teacher By ID
+void DeleteTeacherByID()
+{
+    int id;
+    cout << "Enter The Teacher ID You Want To Delete : ";
+
+    cin >> id;
+
+    // Search About Teacher ID And Delete it
+    TeacherController teacherController;
+    Teacher *teacher = teacherController.deleteTeacher(id);
+
+    if (teacher != nullptr)
+        cout << "Teacher with ID [" << id << "] deleted successfully\n";
+    else
+        cout << "Teacher with ID [" << id << "] not found\n";
+}
 
 // Dispaly Student By ID
 void DisplayStudentByID()
@@ -763,7 +780,16 @@ void SwitchTeacher(int service)
     // Delete Teacher
     case 3:
     {
-        cout << "Delete Teacher \n";
+        while (true)
+        {
+            cout << "Delete Teacher \n";
+            DeleteTeacherByID();
+            cout << "Do you want to Delete another teacher? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
         break;
     }
     // Display Teacher

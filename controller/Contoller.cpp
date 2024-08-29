@@ -91,4 +91,9 @@ public:
     {
         return teacherService.updateTeacher(teacher);
     }
+
+    Teacher *deleteTeacher(int ID)
+    {
+        return teacherService.deleteTeacher(ID);
+    }
 };
