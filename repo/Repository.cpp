@@ -43,7 +43,7 @@ public:
     int addStudent(Student student)
     {
         if (data.indexStudent == 25)
-            cout << "Cannot add more students. Repository is full." << endl;
+            cout << "Cannot Add More Students. Repository Is Full." << endl;
         else
         {
             student.setID(data.IDStudent++);
@@ -58,7 +58,7 @@ public:
         Student noStudent;
         noStudent.setID(-1);
         if (data.indexStudent == 0)
-            cout << "There is no student here. Repository is empty." << endl;
+            cout << "There Is No Student Here. Repository Is Empty." << endl;
         else
         {
             // Search about student ID USing Binary Search
@@ -132,7 +132,7 @@ public:
     int addCourse(Course course)
     {
         if (data.indexCourse == 25)
-            cout << "Cannot add more courses. Repository is full." << endl;
+            cout << "Cannot Add More Courses. Repository Is Full." << endl;
         else
         {
             course.setID(data.IDCourse++);
@@ -147,7 +147,7 @@ public:
         Course noCourse;
         noCourse.setID(-1);
         if (data.indexCourse == 0)
-            cout << "There is no course here. Repository is empty." << endl;
+            cout << "There Is No Course Here. Repository Is Empty." << endl;
         else
         {
             // Search about course ID USing Binary Search
@@ -220,7 +220,7 @@ public:
     int addTeacher(Teacher teacher)
     {
         if (data.indexTeacher == 25)
-            cout << "Cannot add more teachers. Repository is full." << endl;
+            cout << "Cannot Add More Teachers. Repository Is Full." << endl;
         else
         {
             teacher.setID(data.IDTeacher++);
@@ -235,7 +235,7 @@ public:
         Teacher noTeacher;
         noTeacher.setID(-1);
         if (data.indexTeacher == 0)
-            cout << "There is no teacher here. Repository is empty." << endl;
+            cout << "There Is No Teacher Here. Repository Is Empty." << endl;
         else
         {
             // Search about teacher ID USing Binary Search

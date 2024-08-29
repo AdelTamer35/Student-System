@@ -20,6 +20,7 @@ public:
         ID = id;
     }
 
+    // Getter for name
     string getName() const
     {
         return name;
@@ -51,8 +52,6 @@ public:
     {
         age = a;
     }
-
-    // Getter for name
 
     // Getter for phoneNumber
     string getPhoneNumber() const

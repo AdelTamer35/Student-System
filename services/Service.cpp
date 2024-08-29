@@ -37,6 +37,7 @@ public:
         if (student.getName().length() <= 2)
         {
             cout << "Invalid Student Name \n";
+            cout << "The Length Of The Student Name Must Be At Least 3 Characters \n";
             f = false;
         }
         else
@@ -47,6 +48,7 @@ public:
                 if (!(student.getName()[i] == ' ' || isalpha(student.getName()[i])))
                 {
                     cout << "Invalid Student Name \n";
+                    cout << "The Student Name Must Only Contain Letter Or Space" << endl;
                     f = false;
                     break;
                 }
@@ -57,6 +59,7 @@ public:
         if (student.getPhoneNumber().length() != 11)
         {
             cout << "Invalid Student Phone Number \n";
+            cout << "The Length Of The Student Phone Number Must Be 11 Digits \n";
             f = false;
         }
         else
@@ -76,6 +79,7 @@ public:
                 student.getPhoneNumber().substr(0, 3) != "015")
             {
                 cout << "Invalid Student Phone Number \n";
+                cout << "The Student Phone Number Must Be Start With 010 || 011 || 012 || 015" << endl;
                 f = false;
             }
 
@@ -85,6 +89,7 @@ public:
                 if (!isdigit(student.getPhoneNumber()[i]))
                 {
                     cout << "Invalid Student Phone Number \n";
+                    cout << "The Phone Number Must Be A Numerical." << endl;
                     f = false;
                     break;
                 }
@@ -96,6 +101,7 @@ public:
         if (std::regex_match(student.getEmail(), pattern) != 1)
         {
             cout << "Invalid Student Email \n";
+            cout << "The Email Must Be Such That example@example.com \n";
             f = false;
         }
 
@@ -103,6 +109,7 @@ public:
         if (!(student.getAge() >= 18 && student.getAge() <= 30))
         {
             cout << "Invalid Student Age \n";
+            cout << "The Student Age Must Be Between [18, 30] Inclusive \n";
             f = false;
         }
 
@@ -110,6 +117,7 @@ public:
         if (!(student.getGPA() >= 0.0 && student.getGPA() <= 4.0))
         {
             cout << "Invalid Student GPA \n";
+            cout << "The Student GPA Must Be between [0.0, 4.0] Inclusive \n";
             f = false;
         }
 
@@ -147,7 +155,7 @@ public:
     {
         // Check if There is No Student or Not
         if (data.indexStudent == 0)
-            cout << "No Student to Delete \n";
+            cout << "There Is No Student To Delete. Repository Is Empty! \n";
         else if (StudentServiceImp::searchAboutID(ID) != -1)
         {
             return studentRepo.deleteStudent(StudentServiceImp::searchAboutID(ID));
@@ -191,6 +199,7 @@ public:
         if (course.getName().length() <= 1)
         {
             cout << "Invalid Course Name \n";
+            cout << "The Course Name Must Be At Least 2 Characters \n";
             f = false;
         }
 
@@ -198,6 +207,7 @@ public:
         if (!(course.getHour() >= 1 && course.getHour() <= 4))
         {
             cout << "Invalid Course Hours \n";
+            cout << "The Course Hours Must Be Between [1, 4] Inclusive \n";
             f = false;
         }
         return f;
@@ -234,7 +244,7 @@ public:
     {
         // Check if There is No Course or Not
         if (data.indexCourse == 0)
-            cout << "No Course to Delete \n";
+            cout << "There Is No Course to Delete. Repository Is Empty! \n";
         else if (CourseServiceImp::searchAboutID(ID) != -1)
             return courseRepo.deleteCourse(CourseServiceImp::searchAboutID(ID));
         return nullptr;
@@ -277,6 +287,7 @@ public:
         if (teacher.getName().length() <= 2)
         {
             cout << "Invalid Teacher Name \n";
+            cout << "The Teacher Name Must Be At Least 3 Characters \n";
             f = false;
         }
         else
@@ -287,6 +298,7 @@ public:
                 if (!(teacher.getName()[i] == ' ' || isalpha(teacher.getName()[i])))
                 {
                     cout << "Invalid Teacher Name \n";
+                    cout << "The Teacher Name Must Only Contain Letters And Spaces \n";
                     f = false;
                     break;
                 }
@@ -297,6 +309,7 @@ public:
         if (teacher.getPhoneNumber().length() != 11)
         {
             cout << "Invalid Teacher Phone Number \n";
+            cout << "The Length Of The Teacher Phone Number Must Be 11 Digits \n";
             f = false;
         }
         else
@@ -308,6 +321,7 @@ public:
                 teacher.getPhoneNumber().substr(0, 3) != "015")
             {
                 cout << "Invalid Teacher Phone Number \n";
+                cout << "The Student Phone Number Must Be Start With 010 || 011 || 012 || 015" << endl;
                 f = false;
             }
 
@@ -317,6 +331,7 @@ public:
                 if (!isdigit(teacher.getPhoneNumber()[i]))
                 {
                     cout << "Invalid Teacher Phone Number \n";
+                    cout << "The Phone Number Must Be A Numerical." << endl;
                     f = false;
                     break;
                 }
@@ -328,6 +343,7 @@ public:
         if (std::regex_match(teacher.getEmail(), pattern) != 1)
         {
             cout << "Invalid Teacher Email \n";
+            cout << "The Email Must Be Such That example@example.com \n";
             f = false;
         }
 
@@ -335,6 +351,7 @@ public:
         if (!(teacher.getAge() >= 30 && teacher.getAge() <= 75))
         {
             cout << "Invalid Teacher Age \n";
+            cout << "The Teacher Age Must Be Between [30, 75] Inclusive \n";
             f = false;
         }
 
@@ -342,6 +359,7 @@ public:
         if (!(teacher.getSalary() >= 10000 && teacher.getSalary() <= 50000))
         {
             cout << "Invalid Teacher Salary \n";
+            cout << "The Teacher Salary Must Be between [10000.0, 50000.0] Inclusive \n";
             f = false;
         }
         return f;
@@ -378,7 +396,7 @@ public:
     {
         // Check if There is No Course or Not
         if (data.indexTeacher == 0)
-            cout << "No Course to Delete \n";
+            cout << "There Is No Teacher to Delete. Repository Is Empty! \n";
         else if (TeacherServiceImp::searchAboutID(ID) != -1)
             return teacherRepo.deleteTeacher(TeacherServiceImp::searchAboutID(ID));
         return nullptr;

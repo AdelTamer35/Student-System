@@ -467,9 +467,9 @@ void DeleteStudentByID()
     Student *student = studentController.deleteStudent(id);
 
     if (student != nullptr)
-        cout << "Student with ID [" << id << "] deleted successfully\n";
+        cout << "Student With ID [" << id << "] Deleted Successfully\n";
     else
-        cout << "Student with ID [" << id << "] not found\n";
+        cout << "Student With ID [" << id << "] Not Found\n";
 }
 // Delete Course By ID
 void DeleteCourseByID()
@@ -484,9 +484,9 @@ void DeleteCourseByID()
     Course *course = courseController.deleteCourse(id);
 
     if (course != nullptr)
-        cout << "Course with ID [" << id << "] deleted successfully\n";
+        cout << "Course With ID [" << id << "] Deleted Successfully\n";
     else
-        cout << "Course with ID [" << id << "] not found\n";
+        cout << "Course With ID [" << id << "] Not Found\n";
 }
 // Delete Teacher By ID
 void DeleteTeacherByID()
@@ -501,9 +501,9 @@ void DeleteTeacherByID()
     Teacher *teacher = teacherController.deleteTeacher(id);
 
     if (teacher != nullptr)
-        cout << "Teacher with ID [" << id << "] deleted successfully\n";
+        cout << "Teacher With ID [" << id << "] Deleted Successfully\n";
     else
-        cout << "Teacher with ID [" << id << "] not found\n";
+        cout << "Teacher With ID [" << id << "] Not Found\n";
 }
 
 // Dispaly Student By ID
@@ -821,9 +821,10 @@ void SwitchTeacher(int service)
 int main()
 {
 
-    int process = 1, service;
+    int process = 1, service = 1;
     while (process != 4)
     {
+        process = 1, service = 1;
         cout << "****************** Hello Management System ******************" << endl;
         cout << "Please Enter Your Process You Want To Do ! \n";
 
@@ -837,34 +838,40 @@ int main()
         // **************** Student Services ****************
         case 1:
         {
-            showService("Student");
+            while (service != 5)
+            {
+                showService("Student");
 
-            cout << "which Service You Want To Need ! \n";
-            cin >> service;
-            SwitchStudent(service);
-
+                cout << "which Service You Want To Do ! \n";
+                cin >> service;
+                SwitchStudent(service);
+            }
             break;
         }
 
         // **************** Course Services ****************
         case 2:
         {
-            showService("Course");
+            while (service != 5)
+            {
+                showService("Course");
 
-            cout << "which Service You Want To Need ! \n";
-            cin >> service;
-            SwitchCourse(service);
-
+                cout << "which Service You Want To Do ! \n";
+                cin >> service;
+                SwitchCourse(service);
+            }
             break;
         }
         // **************** Teacher Services ****************
         case 3:
         {
-            showService("Teacher");
-            cout << "which Service You Want To Need ! \n";
-            cin >> service;
-            SwitchTeacher(service);
-
+            while (service != 5)
+            {
+                showService("Teacher");
+                cout << "which Service You Want To Do ! \n";
+                cin >> service;
+                SwitchTeacher(service);
+            }
             break;
         }
         case 4:
