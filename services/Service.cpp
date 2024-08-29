@@ -8,12 +8,14 @@ public:
     virtual Student displayStudenByID(int ID) = 0;
     virtual Student updateStudent(Student student) = 0;
     virtual bool validateStudentData(Student student) = 0;
+    virtual Student *deleteStudent(int ID) = 0;
 };
 // Concrete "Implementation" Class for Student Service
 class StudentServiceImp : public StudentService
 {
 private:
     StudentRepoImpl studentRepo;
+    Data data;
 
 public:
     // override
@@ -122,6 +124,35 @@ public:
     Student updateStudent(Student student)
     {
         return studentRepo.updateStudent(student);
+    }
+
+    int searchAboutID(int ID)
+    {
+        // Search About ID using Binary Search
+        int left = 0, right = data.indexStudent - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (data.student[mid].getID() == ID)
+                return mid;
+            else if (data.student[mid].getID() < ID)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return -1;
+    }
+
+    Student *deleteStudent(int ID)
+    {
+        // Check if There is No Student or Not
+        if (data.indexStudent == 0)
+            cout << "No Student to Delete \n";
+        else if (StudentServiceImp::searchAboutID(ID) != -1)
+        {
+            return studentRepo.deleteStudent(StudentServiceImp::searchAboutID(ID));
+        }
+        return nullptr;
     }
 };
 

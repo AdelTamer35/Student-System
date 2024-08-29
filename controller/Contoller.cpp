@@ -25,6 +25,11 @@ public:
     {
         return studentService.updateStudent(student);
     }
+
+    Student *deleteStudent(int ID)
+    {
+        return studentService.deleteStudent(ID);
+    }
 };
 
 // Class Course Controller

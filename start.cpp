@@ -535,6 +535,24 @@ void UpdateTeacherByID()
         cout << "Student Not Found\n";
 }
 
+// Delete Student By ID
+void DeleteStudentByID()
+{
+    int id;
+    cout << "Enter The Student ID You Want To Delete : ";
+
+    cin >> id;
+
+    // Search About Student ID And Delete it
+    StudentController studentController;
+    Student *student = studentController.deleteStudent(id);
+
+    if (student != nullptr)
+        cout << "Student with ID [" << id << "] deleted successfully\n";
+    else
+        cout << "Student with ID [" << id << "] not found\n";
+}
+
 // Student Services
 void SwitchStudent(int service)
 {
@@ -574,7 +592,17 @@ void SwitchStudent(int service)
     // Delete Student
     case 3:
     {
-        cout << "Delete Student \n";
+        while (true)
+        {
+            cout << "Delete Student \n";
+            DeleteStudentByID();
+            cout << "Do you want to Delete another student? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
+
         break;
     }
     // Display Student

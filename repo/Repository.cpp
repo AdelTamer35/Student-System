@@ -30,6 +30,7 @@ public:
     virtual int addStudent(Student student) = 0;
     virtual Student displayStudenByID(int ID) = 0;
     virtual Student updateStudent(Student student) = 0;
+    virtual Student *deleteStudent(int mid) = 0;
 };
 // Concrete "Implementation" Class for Student Repository
 class StudentRepoImpl : public StudentRepo
@@ -97,6 +98,17 @@ public:
             else
                 r = mid - 1;
         }
+    }
+
+    // Return array of students
+    Student *deleteStudent(int mid)
+    {
+        // Shift to the left
+        for (int i = mid; i < data.indexStudent - 1; i++)
+            data.student[i] = data.student[i + 1];
+        data.indexStudent--;
+
+        return data.student;
     }
 };
 
