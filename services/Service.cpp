@@ -170,6 +170,7 @@ class CourseServiceImp : public CourseService
 {
 private:
     CourseRepoImpl courseRepo;
+    Data data;
 
 public:
     // override
@@ -210,6 +211,33 @@ public:
     Course updateCourse(Course course)
     {
         return courseRepo.updateCourse(course);
+    }
+
+    int searchAboutID(int ID)
+    {
+        // Search About ID using Binary Search
+        int left = 0, right = data.indexCourse - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (data.course[mid].getID() == ID)
+                return mid;
+            else if (data.course[mid].getID() < ID)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return -1;
+    }
+
+    Course *deleteCourse(int ID)
+    {
+        // Check if There is No Course or Not
+        if (data.indexCourse == 0)
+            cout << "No Course to Delete \n";
+        else if (CourseServiceImp::searchAboutID(ID) != -1)
+            return courseRepo.deleteCourse(CourseServiceImp::searchAboutID(ID));
+        return nullptr;
     }
 };
 

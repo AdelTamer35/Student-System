@@ -119,6 +119,7 @@ public:
     virtual int addCourse(Course course) = 0;
     virtual Course displayCourseByID(int ID) = 0;
     virtual Course updateCourse(Course course) = 0;
+    virtual Course *deleteCourse(int mid) = 0;
 };
 // Concrete "Implementation" Class for Course Repository
 class CourseRepoImpl : public CourseRepo
@@ -186,6 +187,16 @@ public:
             else
                 r = mid - 1;
         }
+    }
+
+    Course *deleteCourse(int mid)
+    {
+        // Shift to the left
+        for (int i = mid; i < data.indexCourse - 1; i++)
+            data.course[i] = data.course[i + 1];
+        data.indexCourse--;
+
+        return data.course;
     }
 };
 

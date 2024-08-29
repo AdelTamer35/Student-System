@@ -146,87 +146,6 @@ void AddTeacher()
         cout << "Teacher Not Added\n";
 }
 
-// Dispaly Student By ID
-void DisplayStudentByID()
-{
-    int id;
-    cout << "Enter The Student ID You Want To Diplay His Data : ";
-
-    // Get Student ID From User
-    cin >> id;
-
-    // Search About Student ID
-    StudentController studentController;
-    Student student;
-    student = studentController.displayStudenByID(id);
-
-    if (student.getID() != -1)
-    {
-        // Display Student Data
-        cout << "Student Is Found" << endl;
-        cout << "Student Data = { " << "Name : " << student.getName() << endl
-             << "ID : " << student.getID() << endl
-             << "Phone Number : " << student.getPhoneNumber() << endl
-             << "Email : " << student.getEmail() << endl
-             << "Age : " << student.getAge() << endl
-             << "GPA : " << student.getGPA() << " }\n";
-    }
-    else
-        cout << "Student Not Found" << endl;
-}
-// Display Course By ID
-void DisplayCourseByID()
-{
-    int id;
-    cout << "Enter The Course ID You Want To Diplay His Data : ";
-
-    // Get Course ID From User
-    cin >> id;
-
-    // Search About Course ID
-    CoureController courseController;
-    Course course;
-    course = courseController.displayCourseByID(id);
-
-    if (course.getID() != -1)
-    {
-        // Display Course Data
-        cout << "Course Is Found" << endl;
-        cout << "Course Data = { " << "Name : " << course.getName() << endl
-             << "ID : " << course.getID() << endl
-             << "Hour : " << course.getHour() << " }\n";
-    }
-    else
-        cout << "Course Not Found" << endl;
-}
-// Display Teacher By ID
-void DisplayTeacherByID()
-{
-    int id;
-    cout << "Enter The Teacher ID You Want To Diplay His Data : ";
-
-    // Get Teacher ID From User
-    cin >> id;
-
-    // Search About Teacher ID
-    TeacherController teacherController;
-    Teacher teacher;
-    teacher = teacherController.displayTeacherByID(id);
-
-    if (teacher.getID() != -1)
-    {
-        // Display Teacher Data
-        cout << "Teacher Data = { " << "Name : " << teacher.getName() << endl
-             << "ID : " << teacher.getID() << endl
-             << "Phone Number : " << teacher.getPhoneNumber() << endl
-             << "Email : " << teacher.getEmail() << endl
-             << "Age : " << teacher.getAge() << endl
-             << "Salary : " << teacher.getSalary() << " }\n";
-    }
-    else
-        cout << "Teacher Not Found" << endl;
-}
-
 // Update Student Data
 Student updateStudentData(int choice, Student &student)
 {
@@ -552,6 +471,104 @@ void DeleteStudentByID()
     else
         cout << "Student with ID [" << id << "] not found\n";
 }
+// Delete Course By ID
+void DeleteCourseByID()
+{
+    int id;
+    cout << "Enter The Course ID You Want To Delete : ";
+
+    cin >> id;
+
+    // Search About Course ID And Delete it
+    CoureController courseController;
+    Course *course = courseController.deleteCourse(id);
+
+    if (course != nullptr)
+        cout << "Course with ID [" << id << "] deleted successfully\n";
+    else
+        cout << "Course with ID [" << id << "] not found\n";
+}
+
+// Dispaly Student By ID
+void DisplayStudentByID()
+{
+    int id;
+    cout << "Enter The Student ID You Want To Diplay His Data : ";
+
+    // Get Student ID From User
+    cin >> id;
+
+    // Search About Student ID
+    StudentController studentController;
+    Student student;
+    student = studentController.displayStudenByID(id);
+
+    if (student.getID() != -1)
+    {
+        // Display Student Data
+        cout << "Student Is Found" << endl;
+        cout << "Student Data = { " << "Name : " << student.getName() << endl
+             << "ID : " << student.getID() << endl
+             << "Phone Number : " << student.getPhoneNumber() << endl
+             << "Email : " << student.getEmail() << endl
+             << "Age : " << student.getAge() << endl
+             << "GPA : " << student.getGPA() << " }\n";
+    }
+    else
+        cout << "Student Not Found" << endl;
+}
+// Display Course By ID
+void DisplayCourseByID()
+{
+    int id;
+    cout << "Enter The Course ID You Want To Diplay His Data : ";
+
+    // Get Course ID From User
+    cin >> id;
+
+    // Search About Course ID
+    CoureController courseController;
+    Course course;
+    course = courseController.displayCourseByID(id);
+
+    if (course.getID() != -1)
+    {
+        // Display Course Data
+        cout << "Course Is Found" << endl;
+        cout << "Course Data = { " << "Name : " << course.getName() << endl
+             << "ID : " << course.getID() << endl
+             << "Hour : " << course.getHour() << " }\n";
+    }
+    else
+        cout << "Course Not Found" << endl;
+}
+// Display Teacher By ID
+void DisplayTeacherByID()
+{
+    int id;
+    cout << "Enter The Teacher ID You Want To Diplay His Data : ";
+
+    // Get Teacher ID From User
+    cin >> id;
+
+    // Search About Teacher ID
+    TeacherController teacherController;
+    Teacher teacher;
+    teacher = teacherController.displayTeacherByID(id);
+
+    if (teacher.getID() != -1)
+    {
+        // Display Teacher Data
+        cout << "Teacher Data = { " << "Name : " << teacher.getName() << endl
+             << "ID : " << teacher.getID() << endl
+             << "Phone Number : " << teacher.getPhoneNumber() << endl
+             << "Email : " << teacher.getEmail() << endl
+             << "Age : " << teacher.getAge() << endl
+             << "Salary : " << teacher.getSalary() << " }\n";
+    }
+    else
+        cout << "Teacher Not Found" << endl;
+}
 
 // Student Services
 void SwitchStudent(int service)
@@ -669,7 +686,16 @@ void SwitchCourse(int service)
     // Delete Course
     case 3:
     {
-        cout << "Delete Course \n";
+        while (true)
+        {
+            cout << "Delete Course \n";
+            DeleteCourseByID();
+            cout << "Do you want to Delete another course? (y/n) ";
+            char choice;
+            cin >> choice;
+            if (choice == 'n' || choice == 'N')
+                break;
+        }
         break;
     }
     // Display Course

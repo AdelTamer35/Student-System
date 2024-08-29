@@ -58,6 +58,11 @@ public:
     {
         return courseService.updateCourse(course);
     }
+
+    Course *deleteCourse(int ID)
+    {
+        return courseService.deleteCourse(ID);
+    }
 };
 
 // Class Teacher Controller
